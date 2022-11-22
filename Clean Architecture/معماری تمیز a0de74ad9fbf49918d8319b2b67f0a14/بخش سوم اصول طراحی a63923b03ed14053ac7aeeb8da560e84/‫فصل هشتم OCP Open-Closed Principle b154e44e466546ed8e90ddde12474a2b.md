@@ -10,7 +10,7 @@
 
 usecase → repo
 
-‫همچنین نوع بانک از repo مستقل است، پس
+‫همچنین repo از نوع بانک مستقل است، پس
 
 repo ← mongo_repo
 

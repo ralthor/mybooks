@@ -71,7 +71,6 @@ tail latency amplification: وقتی چند پروسه‌ی همزمان برا�
 در مورد «معماری» سیستم صحبت کرده: حول فرضیاتی شکل می‌گیره چه عملیاتی مرسوم و چه عملیاتی به ندرت در سیستم اتفاق می‌افتند.
 مهندسی عملیات نادر هدر دادن زمان و هزینه است.
 
-Scalable architectures, despite being tailored to a specific application, are often constructed using general-purpose building blocks arranged in common patterns
 هر چند معماری‌های مقیاس‌پذیر برای کاربردهای مخصوص به خود ساخته می‌شوند، اما معمولا از قطعات همه‌منظوره ساخته می‌شوند و از الگوهای مشترکی استفاده می‌کنند.
 
 ## قابلیت نگهداری

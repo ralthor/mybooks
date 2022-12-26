@@ -29,6 +29,26 @@
 
  
 ## زبان‌های پرس و جو برای داده
+‫راجع به زبان‌های پرس و جوی
+declarative
+و همچنین
+map-reduce
+صحبت کرده.
+
+توضیح از جایی غیر از خود کتاب: 
+Declarative programming is a paradigm describing WHAT the program does, without explicitly specifying its control flow. Imperative programming is a paradigm describing HOW the program should do something by explicitly specifying each instruction (or statement) step by step, which mutate the program's state. [More here](https://stackoverflow.com/questions/1784664/what-is-the-difference-between-declarative-and-imperative-paradigm-in-programmin)
+
+### map-reduce
+‫یک نمونه فراخوانی کدهای نوشته شده در پایتون در hadoop
+
+```shell
+hadoop jar /path/to/hadoop-streaming.jar \
+  -input /path/to/input/data \
+  -output /path/to/output/directory \
+  -mapper /path/to/mapper.py \
+  -reducer NONE
+```
+
 
 ## مدل‌های داده‌ای گراف‌مانند
 

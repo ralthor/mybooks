@@ -181,6 +181,21 @@ LSM-Trees
 B-Trees
 بیشتر از دیگری است.
 
+در
+log-structured indexes
+(همان درخت‌های LSM)
+یک عملیات نوشتن در واقع شامل چند بار نوشتن در دیسک (در طول عمر پایگاه داده) است که
+write amplification
+خوانده می‌شود.
+این باعث پایین آمدن
+write throughput
+می‌شود چون پهنای باند دیسک محدود است.
+این قضیه در
+SSDها
+مشکل بیشتری نشان می‌دهد چون ظرفیت نوشتنشان (تعداد نوشتن)
+محدود است.
+
+
 ### Other indexing structures
 
 ## Transaction processing vs Analytics

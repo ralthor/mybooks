@@ -337,6 +337,7 @@ anti-caching
 در این حالت مدیریت خواندن و نوشتن رکوردهای مورد دستیابی و قدیمی روی دیسک را خود پایگاه انجام می‌دهد.
 
 ## Transaction processing vs Analytics
+test
 
 ### Data warehousing
 

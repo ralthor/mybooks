@@ -194,12 +194,12 @@ JSON
 - پیام از طریق ارتباط مستقیم شبکه انجام نمی‌شود، بلکه از طریق message broker صورت می‌گیرد (also called a message queue or message-oriented middleware)
 - ‫message broker داده را موقتا ذخیره می‌کند
 - مزایای message-passing نسبت به RPC
-  - It can act as a buffer if the recipient is unavailable or overloaded, thus improving system reliability
-  - It can automatically redeliver messages to a process that has crashed, thus preventing messages from being lost
-  - It avoids the sender needing to know the IP address and port number of the recipient
-  - It allows one message to be sent to several recipients
-  - It logically decouples the sender from the recipient
-- The main difference compared to RPC is that message-passing communication is usually one-way: a sender doesn't expect to receive a reply to its messages
-- Communication pattern is asynchronous: the sender doesn't wait for the message to be delivered, but simply sends it and then forgets about it.
+  - اگر گیرنده در دسترس نباشد یا لود بالا داشته باشد، می‌تواند به عنوان یک بافر عمل کند و قابلیت اطمینان سیستم را بالا ببرد.
+  - می تواند اتوماتیک پیام ها را به فرآیندی که کرش کرده بوده برگرداند و از گم شدن پیام ها جلوگیری کند.
+  - از نیاز فرستنده به دانستن آدرس IP و شماره پورت گیرنده جلوگیری می کند.
+  - امکان ارسال یک پیام به چندین گیرنده
+  - به طور منطقی فرستنده را از گیرنده decouple می کند
+- تفاوت اصلی در مقایسه با RPC این است که ارتباط در message-passing معمولا یک طرفه است: فرستنده انتظار دریافت پاسخ به پیام های خود را ندارد.
+- الگوی ارتباطی message-passing آسنکرون است: فرستنده منتظر ارسال پیام نمی‌ماند، بلکه آن را ارسال کرده و فراموش می‌کند.
 
 [back](README.md)

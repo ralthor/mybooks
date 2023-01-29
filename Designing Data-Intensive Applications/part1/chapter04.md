@@ -143,17 +143,18 @@ JSON
 
 
 #### Web services
-- Web services use HTTP as the underlying protocol for communication.
+- از HTTP برای ارتباط استفاده می‌کنند
 - Web services can be used in various contexts:
   - A client application (e.g. mobile app or web app) making requests to a service over HTTP via the internet.
   - One service making requests to another service within the same organization, often located within the same datacenter, as part of a service-oriented/microservices architecture.
   - One service making requests to a service owned by a different organization, usually via the internet.
-- Two popular approaches to web services are REST and SOAP.
-- REST is a design philosophy that emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation.
-- SOAP is an XML-based protocol for making network API requests, but it aims to be independent from HTTP and avoids using most HTTP features. It comes with a complex set of related standards (the web service framework, known as WS-*).
-- The API of a SOAP web service is described using an XML-based language called the Web Services Description Language (WSDL).
-- Users of SOAP rely heavily on tool support, code generation, and IDEs.
-- SOAP has fallen out of favor in most smaller companies and interoperability between different vendors’ implementations often causes problems.
+- دو رویکرد وب‌سرویس:
+  - ‫REST یک فلسفه‌ی طراحی با تاکید روی فرمت‌های داده‌ای ساده، استفاده از URL برای نمایش منابع و استفاده از فیچرهای HTTP برای کنترل کش، کنترل دسترسی و مذاکرات نوع محتوی. (cache control, authentication, and content type negotiation.)
+  - ‫SOAP پیچیده‌تر بر پایه‌ی XML، تمرکز روی استقلال از HTTP و اجتناب از استفاده از فیچرهای آن.
+- SOAP:
+  - The API of a SOAP web service is described using an XML-based language called the Web Services Description Language (WSDL).
+  - Users of SOAP rely heavily on tool support, code generation, and IDEs.
+  - SOAP has fallen out of favor in most smaller companies and interoperability between different vendors’ implementations often causes problems.
 - RESTful APIs tend to have simpler approaches, typically involving less code generation and automated tooling. A definition format such as OpenAPI can be used to describe RESTful APIs and produce documentation.
 
 #### The problems with remote procedure calls (RPCs)

@@ -131,16 +131,13 @@ JSON
 - Archival storage, such as taking snapshots of the database, allows for data to be encoded consistently using the latest schema, and formats like Avro and Parquet are a good fit for this purpose.
 
 ### Dataflow Through Services: Rest and RPC
-- There are different ways of arranging communication over a network, with the most common being clients and servers.
-- Servers expose an API over the network and clients connect to the servers to make requests to that API.
+- روش‌های مختلفی وجود دارد و مرسوم‌ترین کلاینت/سرور است
+- سرورها روی شبکه API در اختیار قرار می‌دهند و کلاینت‌ها به آن درخواست می‌دهند
 - The web works by clients (web browsers) making requests to web servers using standardized protocols and data formats (HTTP, URLs, SSL/TLS, HTML, etc.).
 - Web browsers are not the only type of client, other examples include native apps and client-side JavaScript applications.
 - A server can also act as a client to another service, this is known as a service-oriented architecture (SOA) or microservices architecture.
 - Services are similar to databases but expose an application-specific API and provide a degree of encapsulation.
 - A key design goal of a service-oriented/microservices architecture is to make the application easier to change and maintain by making services independently deployable and evolvable.
-
-
-
 
 #### Web services
 - از HTTP برای ارتباط استفاده می‌کنند
@@ -161,27 +158,25 @@ JSON
 - Remote procedure calls (RPCs) have been around since the 1970s
 - The RPC model tries to make a request to a remote network service look the same as calling a function or method in your programming language, within the same process
 - The approach is fundamentally flawed
-- A local function call is predictable and either succeeds or fails, depending only on parameters that are under your control. A network request is unpredictable
-- Network request may lost due to network problem, or the remote machine may be slow or unavailable
-- A local function call either returns a result, or throws an exception, or never returns. A network request may return without a result, due to a timeout
-- If you retry a failed network request, it could happen that the requests are actually getting through, and only the responses are getting lost
-- Local function calls don’t have this problem
-- Every time you call a local function, it normally takes about the same time to execute. A network request is much slower than a function call, and its latency is also wildly variable
-- When you call a local function, you can efficiently pass it references (pointers) to objects in local memory. When you make a network request, all those parameters need to be encoded into a sequence of bytes that can be sent over the network
-- The client and the service may be implemented in different programming languages, so the RPC framework must translate datatypes from one language into another
-- All of these factors mean that there’s no point trying to make a remote service look too much like a local object in your programming language, because it’s a fundamentally different thing
-- Part of the appeal of REST is that it doesn’t try to hide the fact that it’s a network protocol
-
-
+  - متود لوکال قابل پیشبینی است و معلوم است که موفق بوده یا شکست خورده، اما یک فراخوانی شبکه نه
+  - درخواست شبکه ممکن است به خاطر مشکلات شبکه یا دردسترس نبودن و یا کند بودن میزبان گم شود
+  - A local function call either returns a result, or throws an exception, or never returns. A network request may return without a result, due to a timeout
+  - If you retry a failed network request, it could happen that the requests are actually getting through, and only the responses are getting lost
+  - Every time you call a local function, it normally takes about the same time to execute. A network request is much slower than a function call, and its latency is also wildly variable
+  - When you call a local function, you can efficiently pass it references (pointers) to objects in local memory. When you make a network request, all those parameters need to be encoded into a sequence of bytes that can be sent over the network
+  - The client and the service may be implemented in different programming languages, so the RPC framework must translate datatypes from one language into another
+- این فاکتورهای نشان می‌دهند دلیلی ندارد که بخواهیم یک سرویس ریموت را خیلی شبیه یک شیئ لوکال نشان دهیم زیرا ماهیتا متفاوت است.
 
 #### Current directions for RPC
 - RPC isn't going away, various frameworks have been built on top of different encodings
-- New generation of RPC frameworks are more explicit about the fact that a remote request is different from a local function call
+- نسل جدید صریح‌تر اذعان می‌کند که درخواست به ماشینی در شبکه با فراخوانی متود لوکال متفاوت است
 - Examples of frameworks: Thrift, Avro, gRPC, Finagle, Rest.li
-- gRPC and Finagle/Rest.li use futures to encapsulate asynchronous actions that may fail
-- gRPC supports streams, where a call consists of not just one request and one response, but a series of requests and responses over time
+- gRPC and Finagle/Rest.li use ـfuturesـ to encapsulate asynchronous actions that may fail
+- gRPC supports ـstreamsـ, where a call consists of not just one request and one response, but a series of requests and responses over time
 - Some frameworks also provide service discovery, allowing a client to find out at which IP address and port number it can find a particular service
 - Custom RPC protocols with a binary encoding format can achieve better performance than something generic like JSON over REST
+
+#### خلاصه‌ی زیربخش
 - RESTful API has other significant advantages, such as being good for experimentation and debugging, supported by all mainstream programming languages and platforms, and having a vast ecosystem of tools available
 - REST seems to be the predominant style for public APIs, while RPC frameworks focus on requests between services owned by the same organization, typically within the same datacenter
 - For evolvability, it's important that RPC clients and servers can be changed and deployed independently
@@ -193,5 +188,18 @@ JSON
 - No agreement on how API versioning should work for RESTful APIs, common approaches are to use a version number in the URL or in the HTTP Accept header
 
 ### Message-Passing Dataflow
+- روشی است برای کد کردن داده در انتقال از پردازه‌ای به پردازه‌ی دیگر
+- شبیه REST/RPC and databases است
+- In message-passing systems, a client sends a message (usually called a message) to another process with low latency
+- پیام از طریق ارتباط مستقیم شبکه انجام نمی‌شود، بلکه از طریق message broker صورت می‌گیرد (also called a message queue or message-oriented middleware)
+- ‫message broker داده را موقتا ذخیره می‌کند
+- مزایای message-passing نسبت به RPC
+  - It can act as a buffer if the recipient is unavailable or overloaded, thus improving system reliability
+  - It can automatically redeliver messages to a process that has crashed, thus preventing messages from being lost
+  - It avoids the sender needing to know the IP address and port number of the recipient
+  - It allows one message to be sent to several recipients
+  - It logically decouples the sender from the recipient
+- The main difference compared to RPC is that message-passing communication is usually one-way: a sender doesn't expect to receive a reply to its messages
+- Communication pattern is asynchronous: the sender doesn't wait for the message to be delivered, but simply sends it and then forgets about it.
 
 [back](README.md)
